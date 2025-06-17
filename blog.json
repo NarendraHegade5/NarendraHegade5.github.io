@@ -1,0 +1,27 @@
+[
+    {
+      "title": "Runtime Quantum Advantage with BF-DCQO (I)",
+      "image": "img/rqa_1.png",
+      "link": "https://kipu-quantum.com/knowledge-hub/blog/runtime-quantum-advantage-with-bf-dcqo/"
+    },
+    {
+      "title": "Runtime Quantum Advantage with BF-DCQO (II)",
+      "image": "img/rqa_2.png",
+      "link": "https://kipu-quantum.com/knowledge-hub/blog/runtime-quantum-advantage-with-bf-dcqo-ii/"
+    },
+    {
+      "title": "Quantum Optimization Benchmark Library: The Intractable Decathlon",
+      "image": "img/decathlon.jpg",
+      "link": "https://kipu-quantum.com/knowledge-hub/blog/quantum-optimization-benchmark-library-the-intractable-decathlon/"
+    },
+    {
+      "title": "Digital Quantum Simulation of Quantum Critical Dynamics",
+      "image": "img/material_design.jpg",
+      "link": "https://kipu-quantum.com/knowledge-hub/blog/pushing-boundaries-in-material-design-at-the-quantum-advantage-level/"
+    },
+    {
+      "title": "Digital-Analog Quantum Computing",
+      "image": "img/daqc.jpg",
+      "link": "https://kipu-quantum.com/knowledge-hub/blog/digital-analog-quantum-computing-for-higher-order-problems-at-the-quantum-advantage-level/"
+    }
+  ]

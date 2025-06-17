@@ -1,0 +1,32 @@
+[
+  {
+    "date": "2025-06-09",
+    "title": "New paper alert: Protein folding with an all-to-all trapped-ion quantum computer",
+    "description": "Excited to announce our new experimental work, in collaboration with IonQ, on higher-order binary optimization using BF-DCQO. In particular, we tackle protein folding with up to 12 amino acids, one of the largest implementations to date on a quantum computer, max-4-SAT at the computational phase transition with up to 36 qubits, and a fully connected spin-glass problem using 36 qubits. <a href=\"https://arxiv.org/abs/2506.07866\" target=\"_blank\">arXiv:2506.07866</a>",
+    "images": ["img/pf_image.jpg"]
+  },
+  {
+    "date": "2025-06-06",
+    "title": "IBM Quantum Partner Forum in London",
+    "description": "Attended and gave a talk on 'Runtime Quantum Advantage with BF-DCQO' at the IBM Quantum Partner Forum in London. <a href=\"https://ibm.ent.box.com/s/zha6j6zmz50czoxxtuvjef5r7ux200rb/file/1892969214686\" target=\"_blank\">Video</a>",
+    "images": ["img/ibm_forum.jpg"]
+  },
+  {
+    "date": "2025-04-18",
+    "title": "Low autocorrelation binary sequence (LABS)",
+    "description": "Comparison of a random binary sequence versus the optimal low-autocorrelation sequence of length 30. In the animation, you can see that the optimal sequence exhibits a single dominant peak at zero lag, with all other side-lobes suppressed—unlike the random sequence, whose autocorrelation side-lobes fluctuate widely.",
+    "videos": ["videos/LABS_sequence.mp4"]
+  },
+  {
+    "date": "2025-04-08",
+    "title": "Quantum Optimization Working Group Meeting: Liverpool",
+    "description": "Attended the annual Quantum Optimization Working Group Meeting in Liverpool, UK, with insightful discussions on the latest quantum optimization advancements. Began a new collaboration on an exciting project.",
+    "images": ["img/qowg_liverpool.jpg"]
+  },
+    {
+        "date": "2025-05-13",
+        "title": "New paper alert: Runtime quantum advantage with BF-DCQO",
+        "description": "Experimental demonstration of runtime quantum advantage for 156-qubit HUBO problems on superconducting quantum processors using the BF-DCQO algorithm, benchmarked against simulated annealing and CPLEX. <a href=\"https://arxiv.org/abs/2505.08663\" target=\"_blank\">arXiv:2505.08663</a>",
+        "images": ["img/RQA.jpg"]
+    }
+]

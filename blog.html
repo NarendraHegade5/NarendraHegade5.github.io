@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Blog • Narendra N. Hegade</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <nav class="topnav">
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="news.html">News</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="blog-header">
+      <h1>Latest Writings</h1>
+      <p class="intro">Blog posts covering topics in quantum computing, optimization, and quantum simulation (Co-authored).</p>
+    </section>
+
+    <section id="blog-banner" class="blog-banner"></section>
+
+    <!-- Blog card template -->
+    <template id="blog-card-template">
+      <a class="blog-card" target="_blank">
+        <img class="blog-image" src="" alt="Blog Image">
+        <div class="blog-card-content">
+          <h3 class="blog-title"></h3>
+        </div>
+      </a>
+    </template>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch('blog.json')
+        .then(response => {
+          if (!response.ok) throw new Error(`Network response was not ok: ${response.statusText}`);
+          return response.json();
+        })
+        .then(blogPosts => {
+          const container = document.getElementById('blog-banner');
+          const template = document.getElementById('blog-card-template');
+
+          blogPosts.forEach(post => {
+            const clone = template.content.cloneNode(true);
+
+            const card = clone.querySelector('.blog-card');
+            card.href = post.link;
+
+            const img = clone.querySelector('.blog-image');
+            img.src = post.image;
+            img.alt = post.title;
+
+            clone.querySelector('.blog-title').innerHTML = post.title;
+
+            container.appendChild(clone);
+          });
+        })
+        .catch(error => console.error('Error loading blog.json:', error));
+    });
+  </script>
+</body>
+
+</html>

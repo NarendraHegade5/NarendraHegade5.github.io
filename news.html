@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Research Updates • Narendra N. Hegade</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Carousel styling */
+    .carousel {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      margin-bottom: 1rem;
+    }
+
+    .carousel img,
+    .carousel video {
+      width: 100%;
+      display: none;
+      border-radius: 12px;
+    }
+
+    .carousel img.active,
+    .carousel video.active {
+      display: block;
+    }
+
+    .carousel-buttons {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .carousel-buttons button {
+      background: rgba(0, 0, 0, 0.6);
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      pointer-events: auto;
+      padding: 0.5rem 0.7rem;
+      border-radius: 50%;
+      transition: background 0.3s ease;
+    }
+
+    .carousel-buttons button:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="topnav">
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="blog.html">Blog</a>
+      <a href="news.html" class="active">News</a>
+    </div>
+  </nav>
+
+  <main>
+    <h1 style="margin:2rem 0 1rem;color:var(--accent)">Research Updates</h1>
+    <p>This page includes the latest news, research paper announcements, conference participations, and updates about my work.</p>
+
+    <div id="updates-container"></div>
+
+    <!-- Template for news items -->
+    <template id="update-template">
+      <section class="news-item">
+        <time class="post-date"></time>
+        <h2 class="update-title"></h2>
+        <p class="update-description"></p>
+        <div class="carousel"></div>
+      </section>
+    </template>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch('news.json')
+        .then(response => response.json())
+        .then(newsItems => {
+          const container = document.getElementById('updates-container');
+          const template = document.getElementById('update-template');
+
+          // Sort items by date (newest first)
+          newsItems.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+          newsItems.forEach(item => {
+            const clone = template.content.cloneNode(true);
+
+            clone.querySelector('.post-date').textContent = new Date(item.date).toLocaleDateString(undefined, {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric'
+            });
+
+            clone.querySelector('.update-title').textContent = item.title;
+            clone.querySelector('.update-description').innerHTML = item.description;
+
+            const carousel = clone.querySelector('.carousel');
+
+            // Handle images
+            if (item.images) {
+              item.images.forEach((imgSrc, index) => {
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                if (index === 0) img.classList.add('active');
+                carousel.appendChild(img);
+              });
+            }
+
+            // Handle videos
+            if (item.videos) {
+              item.videos.forEach((videoSrc, index) => {
+                const video = document.createElement('video');
+                video.controls = true;
+                if (index === 0) video.classList.add('active');
+                video.innerHTML = `<source src="${videoSrc}" type="video/mp4">Your browser does not support the video tag.`;
+                carousel.appendChild(video);
+              });
+            }
+
+            // Add carousel buttons if multiple media items
+            if ((item.images && item.images.length > 1) || (item.videos && item.videos.length > 1)) {
+              const buttonsHTML = `
+                <div class="carousel-buttons">
+                  <button onclick="changeSlide(this.parentNode.parentNode, -1)">❮</button>
+                  <button onclick="changeSlide(this.parentNode.parentNode, 1)">❯</button>
+                </div>`;
+              carousel.innerHTML += buttonsHTML;
+            }
+
+            container.appendChild(clone);
+          });
+        });
+    });
+
+    // Carousel slide change function
+    function changeSlide(carousel, direction) {
+      const media = carousel.querySelectorAll('img, video');
+      let current = Array.from(media).findIndex(el => el.classList.contains('active'));
+      media[current].classList.remove('active');
+      current = (current + direction + media.length) % media.length;
+      media[current].classList.add('active');
+    }
+  </script>
+</body>
+
+</html>
