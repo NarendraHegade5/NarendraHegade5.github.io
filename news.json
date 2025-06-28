@@ -23,10 +23,17 @@
     "description": "Attended the annual Quantum Optimization Working Group Meeting in Liverpool, UK, with insightful discussions on the latest quantum optimization advancements. Began a new collaboration on an exciting project.",
     "images": ["img/qowg_liverpool.jpg"]
   },
-    {
-        "date": "2025-05-13",
-        "title": "New paper alert: Runtime quantum advantage with BF-DCQO",
-        "description": "Experimental demonstration of runtime quantum advantage for 156-qubit HUBO problems on superconducting quantum processors using the BF-DCQO algorithm, benchmarked against simulated annealing and CPLEX. <a href=\"https://arxiv.org/abs/2505.08663\" target=\"_blank\">arXiv:2505.08663</a>",
-        "images": ["img/RQA.jpg"]
-    }
+  {
+    "date": "2025-05-13",
+    "title": "New paper alert: Runtime quantum advantage with BF-DCQO",
+    "description": "Experimental demonstration of runtime quantum advantage for 156-qubit HUBO problems on superconducting quantum processors using the BF-DCQO algorithm, benchmarked against simulated annealing and CPLEX. <a href=\"https://arxiv.org/abs/2505.08663\" target=\"_blank\">arXiv:2505.08663</a>",
+    "images": ["img/RQA.jpg"]
+  },
+  {
+    "date": "2025-06-25",
+    "title": "New paper alert: Sequential Quantum Computing",
+    "description": "We propose and experimentally demonstrate sequential quantum computing (SQC), a paradigm that utilizes multiple homogeneous or heterogeneous quantum processors in hybrid classical-quantum workflows. In this manner, we are able to overcome the limitations of each type of quantum computer by combining their complementary strengths. <a href=\"https://www.arxiv.org/abs/2506.20655\" target=\"_blank\"> arXiv:2506.20655</a>",
+    "images": ["img/sqc_fig.jpg"]
+  }
+
 ]
