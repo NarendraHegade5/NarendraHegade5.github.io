@@ -23,5 +23,10 @@
       "title": "Digital-Analog Quantum Computing",
       "image": "img/daqc.jpg",
       "link": "https://kipu-quantum.com/knowledge-hub/blog/digital-analog-quantum-computing-for-higher-order-problems-at-the-quantum-advantage-level/"
+    },
+    {
+      "title": "Sequential Quantum Computing",
+      "image": "img/sqc_blog.jpg",
+      "link": "https://kipu-quantum.com/knowledge-hub/blog/sqc/"
     }
   ]
