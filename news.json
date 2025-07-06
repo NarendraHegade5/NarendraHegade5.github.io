@@ -37,7 +37,7 @@
   },
   {
     "date": "2025-07-06",
-    "Title": "Protein Folding on Trapped-Ion Quantum Computer",
+    "title": "Protein Folding on Trapped-Ion Quantum Computer",
     "description": "This animation shows the 11-residue head-activator peptide QPPGGSKVILF folding on a tetrahedral lattice, using the 2000 measurement shots collected in the final BF-DCQO iteration on the IonQ Forte all-to-all trapped-ion processor: each frame presents one sampled conformation, the blue staircase curve plots the full set of conformations sorted from highest to lowest computed energy, and the orange dot highlights the structure currently in view, giving a clear snapshot of how the final quantum sample spans the energy landscape from less-favourable folds down to the global minimum.",
     "videos": ["videos/Protein Folding.mp4"]
   }
