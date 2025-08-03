@@ -400,7 +400,7 @@ body::before{
 /* Enhanced blog banner with better spacing */
 .blog-banner {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   justify-items: center;
   margin-bottom: 3rem;
@@ -410,9 +410,9 @@ body::before{
   padding: 0 1rem;
 }
 
-@media (max-width: 950px) {
+@media (max-width: 1100px) {
   .blog-banner {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
 }
@@ -431,7 +431,7 @@ body::before{
 
 /* ---------- Enhanced News cards & date stamp ---------- */
 .news-item{
-  overflow: hidden;
+  overflow: visible;
   margin: 2.5rem 0;
   padding: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -500,7 +500,7 @@ body::before{
 
 /* ---------- Enhanced Utility ---------- */
 main {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: auto;
   padding: 0 1.5rem;
 }
@@ -576,7 +576,7 @@ main {
 /* Enhanced carousel styling */
 .carousel {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   margin: 1.5rem 0;
@@ -644,25 +644,4 @@ main {
   color: var(--accent);
   background: var(--accent-light);
   border-color: rgba(9, 118, 130, 0.2);
-}
-
-/* Enhanced skip link */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 6px;
-  background: var(--accent);
-  color: white;
-  padding: 0.8rem 1rem;
-  text-decoration: none;
-  border-radius: 8px;
-  z-index: 1000;
-  font-weight: 500;
-  transition: all var(--transition-duration) ease;
-  box-shadow: 0 4px 12px rgba(9, 118, 130, 0.3);
-}
-
-.skip-link:focus {
-  top: 6px;
-  transform: translateY(0);
 }
