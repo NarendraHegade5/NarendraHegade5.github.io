@@ -167,10 +167,11 @@
       position: relative;
       overflow: hidden;
       border-radius: 12px;
+      background: rgba(0, 0, 0, 0.2);
     }
 
     .media-container.active {
-      display: block;
+      display: block !important;
     }
 
     .media-container img,
@@ -178,6 +179,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
 
     /* Ensure videos maintain aspect ratio but don't exceed max height */
@@ -420,6 +422,7 @@
 
         // Handle images
         if (item.images) {
+          console.log(`Processing ${item.images.length} images for: ${item.title}`);
           item.images.forEach((imgSrc, index) => {
             const mediaContainer = document.createElement('div');
             mediaContainer.className = `media-container ${index === 0 ? 'active' : ''}`;
@@ -427,6 +430,8 @@
             const img = document.createElement('img');
             img.src = imgSrc;
             img.alt = `${item.title} - Image ${index + 1}`;
+            img.onload = () => console.log(`Image loaded: ${imgSrc}`);
+            img.onerror = () => console.error(`Image failed to load: ${imgSrc}`);
             
             mediaContainer.appendChild(img);
             carousel.appendChild(mediaContainer);
@@ -441,6 +446,7 @@
 
         // Handle videos
         if (item.videos) {
+          console.log(`Processing ${item.videos.length} videos for: ${item.title}`);
           item.videos.forEach((videoSrc, index) => {
             const mediaContainer = document.createElement('div');
             mediaContainer.className = `media-container ${index === 0 ? 'active' : ''}`;
@@ -470,6 +476,13 @@
               <button onclick="changeSlide(this.parentNode.parentNode, 1)" aria-label="Next slide">❯</button>
             </div>`;
           carousel.innerHTML += buttonsHTML;
+        }
+
+        // Only show carousel if there's media content
+        if (totalMedia === 0) {
+          carousel.style.display = 'none';
+        } else {
+          carousel.style.display = 'block';
         }
 
         container.appendChild(clone);
