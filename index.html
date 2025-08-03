@@ -3,37 +3,66 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Narendra N. Hegade • Quantum Physicist</title>
+  <title>Narendra N. Hegade • Quantum Physicist</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Narendra N. Hegade - Quantum Physicist specializing in quantum computation and quantum information. Head of Innovation at Kipu Quantum. Research in quantum simulation, optimization, and digital-analog quantum computing.">
+  <meta name="keywords" content="quantum physics, quantum computing, quantum information, quantum simulation, quantum optimization, DAQC, DCQC, Narendra Hegade, Kipu Quantum">
+  <meta name="author" content="Narendra N. Hegade">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://narendrahegade5.github.io/">
+  <meta property="og:title" content="Narendra N. Hegade • Quantum Physicist">
+  <meta property="og:description" content="Quantum Physicist specializing in quantum computation and quantum information. Head of Innovation at Kipu Quantum.">
+  <meta property="og:image" content="https://narendrahegade5.github.io/img/profilepic.jpg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://narendrahegade5.github.io/">
+  <meta property="twitter:title" content="Narendra N. Hegade • Quantum Physicist">
+  <meta property="twitter:description" content="Quantum Physicist specializing in quantum computation and quantum information. Head of Innovation at Kipu Quantum.">
+  <meta property="twitter:image" content="https://narendrahegade5.github.io/img/profilepic.jpg">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="img/profilepic.jpg">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="style.css" as="style">
+  <link rel="preload" href="img/profilepic.jpg" as="image">
+  
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon"> 
-  <!-- Import Inter font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
   <!-- ─── NAV ─────────────────────────────────────────── -->
-  <nav class="topnav">
+  <nav class="topnav" role="navigation" aria-label="Main navigation">
     <div class="links">
-      <a href="/">Home</a>
+      <a href="/" aria-current="page">Home</a>
       <a href="/blog.html">Blog</a>
       <a href="/news.html">News</a>
     </div>
   </nav>
 
   <!-- ─── HERO ────────────────────────────────────────── -->
-  <main class="hero">
-    <img src="img/profilepic.jpg" alt="Profile picture" class="profile-pic">
+  <main class="hero" role="main" id="main-content">
+    <img src="img/profilepic.jpg" alt="Narendra N. Hegade - Quantum Physicist" class="profile-pic">
     <div class="intro">
-      <h1>Narendra N. Hegade</h1>
-      <p>I am a physicist specializing in quantum computation and quantum information. Currently, I serve as Head of Innovation at <a href="https://kipu-quantum.com/about/our-team/" target="_blank">Kipu Quantum</a> in Germany. My research focuses on developing application‑ and hardware‑specific quantum algorithms, bringing practical quantum computing applications closer to reality.</p>
+      <h1>Narendra N. Hegade</h1>
+      <p>I am a physicist specializing in quantum computation and quantum information. Currently, I serve as Head of Innovation at <a href="https://kipu-quantum.com/about/our-team/" target="_blank" rel="noopener noreferrer">Kipu Quantum</a> in Germany. My research focuses on developing application‑ and hardware‑specific quantum algorithms, bringing practical quantum computing applications closer to reality.</p>
       <p class="research">Research areas — Quantum simulation • Quantum optimization • Digital-analog quantum computing (DAQC) • Digitized-counterdiabatic quantum computing (DCQC) • Quantum sampling</p>
       <p>
-        <a href="https://www.linkedin.com/in/narendra-hegade-b27aa783/" target="_blank">LinkedIn</a> ·
-        <a href="https://x.com/NarendraHegade" target="_blank">X</a> ·
-        <a href="https://scholar.google.co.in/citations?user=ayLy8ngAAAAJ" target="_blank">Scholar</a> ·
-        <a href="mailto:narendrahegade5@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/narendra-hegade-b27aa783/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">LinkedIn</a> ·
+        <a href="https://x.com/NarendraHegade" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter) Profile">X</a> ·
+        <a href="https://scholar.google.co.in/citations?user=ayLy8ngAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar Profile">Scholar</a> ·
+        <a href="mailto:narendrahegade5@gmail.com" aria-label="Email Narendra Hegade">Email</a>
       </p>
     </div>
-    <div class="scroll-down" aria-label="Scroll Down"></div>
+    <div class="scroll-down" aria-label="Scroll Down" role="button" tabindex="0"></div>
   </main>
 </body>
 </html>
