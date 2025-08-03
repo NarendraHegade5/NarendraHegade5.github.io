@@ -239,25 +239,21 @@ body::before{
 
 .hero .intro p:last-child a {
   font-weight: 500;
-  padding: 0.8rem;
-  border-radius: 12px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(8px);
   position: relative;
   overflow: hidden;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-}
-
-.hero .intro p:last-child a svg {
-  transition: all 0.3s ease;
-  width: 20px;
-  height: 20px;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  min-width: 80px;
+  white-space: nowrap;
 }
 
 .hero .intro p:last-child a::before {
@@ -273,13 +269,9 @@ body::before{
 
 .hero .intro p:last-child a:hover {
   background: var(--accent-light);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(9, 118, 130, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(9, 118, 130, 0.3);
   border-color: rgba(9, 118, 130, 0.3);
-}
-
-.hero .intro p:last-child a:hover svg {
-  transform: scale(1.1);
 }
 
 .hero .intro p:last-child a:hover::before {
@@ -769,9 +761,9 @@ main {
   }
   
   .hero .intro p:last-child a {
-    padding: 0.7rem;
-    width: 44px;
-    height: 44px;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    min-width: 70px;
   }
   
   .hero .intro p:last-child a svg {
