@@ -115,19 +115,68 @@
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
       margin: 1rem 0;
       background: rgba(0, 0, 0, 0.3);
+      /* Add max-height constraint to prevent oversized cards */
+      max-height: 400px;
     }
 
     .carousel img,
     .carousel video {
       width: 100%;
+      height: 100%;
       display: none;
       border-radius: 12px;
       transition: opacity 0.3s ease;
+      /* Force consistent aspect ratio and sizing */
+      object-fit: cover;
+      max-height: 400px;
     }
 
     .carousel img.active,
     .carousel video.active {
       display: block;
+    }
+
+    /* Media container active states */
+    .media-container {
+      display: none;
+    }
+
+    .media-container.active {
+      display: block;
+    }
+
+    .media-container img,
+    .media-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Ensure videos maintain aspect ratio but don't exceed max height */
+    .carousel video {
+      object-fit: contain;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    /* Add container for consistent media sizing */
+    .media-container {
+      width: 100%;
+      height: 300px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .media-container img,
+    .media-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .media-container video {
+      object-fit: contain;
+      background: rgba(0, 0, 0, 0.5);
     }
 
     .carousel-buttons {
@@ -359,11 +408,16 @@
         // Handle images
         if (item.images) {
           item.images.forEach((imgSrc, index) => {
+            const mediaContainer = document.createElement('div');
+            mediaContainer.className = 'media-container';
+            
             const img = document.createElement('img');
             img.src = imgSrc;
             img.alt = `${item.title} - Image ${index + 1}`;
             if (index === 0) img.classList.add('active');
-            carousel.appendChild(img);
+            
+            mediaContainer.appendChild(img);
+            carousel.appendChild(mediaContainer);
             
             // Add indicator
             const indicator = document.createElement('div');
@@ -376,12 +430,17 @@
         // Handle videos
         if (item.videos) {
           item.videos.forEach((videoSrc, index) => {
+            const mediaContainer = document.createElement('div');
+            mediaContainer.className = 'media-container';
+            
             const video = document.createElement('video');
             video.controls = true;
             video.setAttribute('aria-label', `${item.title} - Video ${index + 1}`);
             if (index === 0) video.classList.add('active');
             video.innerHTML = `<source src="${videoSrc}" type="video/mp4">Your browser does not support the video tag.`;
-            carousel.appendChild(video);
+            
+            mediaContainer.appendChild(video);
+            carousel.appendChild(mediaContainer);
             
             // Add indicator
             const indicator = document.createElement('div');
@@ -416,24 +475,24 @@
 
     // Enhanced carousel slide change function
     function changeSlide(carousel, direction) {
-      const media = carousel.querySelectorAll('img, video');
+      const mediaContainers = carousel.querySelectorAll('.media-container');
       const indicators = carousel.querySelectorAll('.carousel-indicator');
       
-      if (media.length === 0) return;
+      if (mediaContainers.length === 0) return;
       
-      let current = Array.from(media).findIndex(el => el.classList.contains('active'));
+      let current = Array.from(mediaContainers).findIndex(el => el.classList.contains('active'));
       
       // If direction is a number, go directly to that slide
       if (typeof direction === 'number') {
         current = direction;
       } else {
         // Otherwise, navigate by direction
-        current = (current + direction + media.length) % media.length;
+        current = (current + direction + mediaContainers.length) % mediaContainers.length;
       }
       
-      // Update media
-      media.forEach(el => el.classList.remove('active'));
-      media[current].classList.add('active');
+      // Update media containers
+      mediaContainers.forEach(el => el.classList.remove('active'));
+      mediaContainers[current].classList.add('active');
       
       // Update indicators
       indicators.forEach(indicator => indicator.classList.remove('active'));
