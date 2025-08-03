@@ -285,8 +285,6 @@ body::before{
   margin: 0 auto;
   font-weight: 400;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 @media (max-width: 600px) {
