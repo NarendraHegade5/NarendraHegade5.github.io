@@ -463,15 +463,6 @@
             video.setAttribute('aria-label', `${item.title} - Video ${index + 1}`);
             video.innerHTML = `<source src="${videoSrc}" type="video/mp4">Your browser does not support the video tag.`;
             
-            // Add hover-to-play functionality
-            mediaContainer.addEventListener('mouseenter', () => {
-              video.play().catch(e => console.log('Auto-play prevented:', e));
-            });
-            
-            mediaContainer.addEventListener('mouseleave', () => {
-              video.pause();
-            });
-            
             mediaContainer.appendChild(video);
             carousel.appendChild(mediaContainer);
             
