@@ -22,7 +22,19 @@
   <meta property="twitter:title" content="Blog • Narendra N. Hegade">
   <meta property="twitter:description" content="Latest blog posts covering quantum computing, optimization, and quantum simulation research.">
   
-  <link rel="stylesheet" href="style.css">
+  <!-- Preload critical resources -->
+  <link rel="preload" href="style.css" as="style">
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
+  
+  <!-- Stylesheets -->
 </head>
 
 <body>
