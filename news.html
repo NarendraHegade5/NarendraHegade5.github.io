@@ -108,8 +108,10 @@
       font-size: 0.8rem;
       font-weight: 500;
       text-transform: capitalize;
-      /* Hide the category badges */
-      display: none;
+      /* Completely hide the category badges */
+      display: none !important;
+      visibility: hidden;
+      opacity: 0;
     }
 
     .post-date {
@@ -166,9 +168,11 @@
     /* Media container active states */
     .media-container {
       display: none;
-      /* Allow natural sizing with reasonable limits */
-      min-height: 200px;
-      max-height: 400px;
+      width: 100%;
+      height: 300px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
     }
 
     .media-container.active {
@@ -188,30 +192,7 @@
       background: rgba(0, 0, 0, 0.5);
     }
 
-    /* Add container for consistent media sizing */
-    .media-container {
-      width: 100%;
-      /* More flexible height range */
-      height: auto;
-      min-height: 200px;
-      max-height: 350px;
-      position: relative;
-      overflow: hidden;
-      border-radius: 12px;
-    }
-
-    .media-container img,
-    .media-container video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .media-container video {
-      object-fit: contain;
-      background: rgba(0, 0, 0, 0.5);
-    }
-
+    /* Carousel buttons */
     .carousel-buttons {
       position: absolute;
       top: 50%;
@@ -409,9 +390,9 @@
       newsItems.forEach(item => {
         const clone = template.content.cloneNode(true);
 
-        // Set category badge
-        const categoryBadge = clone.querySelector('.category-badge');
-        categoryBadge.textContent = item.category || 'update';
+        // Set category badge - REMOVED: no longer creating category badges
+        // const categoryBadge = clone.querySelector('.category-badge');
+        // categoryBadge.textContent = item.category || 'update';
 
         // Format date
         const dateElement = clone.querySelector('.post-date');
