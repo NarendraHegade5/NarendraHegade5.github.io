@@ -687,3 +687,33 @@ main {
     margin-top: 1.5rem;
   }
 }
+
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Optimize animations for performance */
+.hero .profile-pic,
+.blog-card,
+.news-item,
+.links a {
+  will-change: transform;
+}
+
+/* Optimize backdrop filters for performance */
+.topnav,
+.hero,
+.blog-card,
+.news-item {
+  will-change: backdrop-filter;
+}
+
+/* Reduce paint operations */
+.hero .profile-pic:hover,
+.blog-card:hover,
+.news-item:hover {
+  transform: translateZ(0);
+}

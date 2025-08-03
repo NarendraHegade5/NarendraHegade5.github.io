@@ -32,6 +32,11 @@
   <link rel="preload" href="style.css" as="style">
   <link rel="preload" href="img/profilepic.jpg" as="image">
   
+  <!-- Font optimization -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MF594CH7BK"></script>
   <script>
@@ -43,7 +48,6 @@
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- ─── NAV ─────────────────────────────────────────── -->
@@ -57,7 +61,7 @@
 
   <!-- ─── HERO ────────────────────────────────────────── -->
   <main class="hero" role="main" id="main-content">
-    <img src="img/profilepic.jpg" alt="Narendra N. Hegade - Quantum Physicist" class="profile-pic">
+    <img src="img/profilepic.jpg" alt="Narendra N. Hegade - Quantum Physicist" class="profile-pic" loading="eager" fetchpriority="high">
     <div class="intro">
       <h1>Narendra N. Hegade</h1>
       <p>I am a physicist specializing in quantum computation and quantum information. Currently, I serve as Head of Innovation at <a href="https://kipu-quantum.com/about/our-team/" target="_blank" rel="noopener noreferrer">Kipu Quantum</a> in Germany. My research focuses on developing application‑ and hardware‑specific quantum algorithms, bringing practical quantum computing applications closer to reality.</p>
@@ -71,5 +75,8 @@
     </div>
     <div class="scroll-down" aria-label="Scroll Down" role="button" tabindex="0"></div>
   </main>
+  
+  <!-- Performance optimization script -->
+  <script src="performance.js" defer></script>
 </body>
 </html>
