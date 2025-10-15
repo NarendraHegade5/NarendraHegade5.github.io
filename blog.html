@@ -5,30 +5,66 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Blog • Narendra N. Hegade</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Latest blog posts by Narendra N. Hegade covering quantum computing, optimization, quantum simulation, BF-DCQO, DCQC, counterdiabatic protocols, and quantum optimization research.">
+  <meta name="keywords" content="quantum computing blog, quantum optimization, quantum simulation, BF-DCQO, DCQC, DCQO, digitized-counterdiabatic quantum computing, digitized-counterdiabatic quantum optimization, bias-field digitized counterdiabatic quantum optimization, digital-analog counterdiabatic quantum computing, DACQC, digital-analog quantum computing, digitized-adiabatic quantum computing, counterdiabatic protocols, counter-diabatic driving, counterdiabatic driving, sequential quantum computing, DAQC, Narendra Hegade">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://narendrahegade5.github.io/blog.html">
+  <meta property="og:title" content="Blog • Narendra N. Hegade">
+  <meta property="og:description" content="Latest blog posts covering quantum computing, optimization, and quantum simulation research.">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:url" content="https://narendrahegade5.github.io/blog.html">
+  <meta property="twitter:title" content="Blog • Narendra N. Hegade">
+  <meta property="twitter:description" content="Latest blog posts covering quantum computing, optimization, and quantum simulation research.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="style.css" as="style">
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MF594CH7BK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MF594CH7BK');
+  </script>
+  
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <nav class="topnav">
+  <nav class="topnav" role="navigation" aria-label="Main navigation">
     <div class="links">
       <a href="/">Home</a>
-      <a href="/blog.html">Blog</a>
+      <a href="/blog.html" aria-current="page">Blog</a>
       <a href="/news.html">News</a>
     </div>
   </nav>
 
-  <main>
+  <main id="main-content" role="main">
     <section class="blog-header">
       <h1>Latest Writings</h1>
       <p class="intro">Blog posts covering topics in quantum computing, optimization, and quantum simulation (Co-authored).</p>
     </section>
 
-    <section id="blog-banner" class="blog-banner"></section>
+    <section id="blog-banner" class="blog-banner" aria-label="Blog posts">
+      <div id="loading" class="loading-message">Loading blog posts...</div>
+      <div id="error" class="error-message" style="display: none;">Failed to load blog posts. Please try again later.</div>
+    </section>
 
     <!-- Blog card template -->
     <template id="blog-card-template">
-      <a class="blog-card" target="_blank">
-        <img class="blog-image" src="" alt="Blog Image">
+      <a class="blog-card" target="_blank" rel="noopener noreferrer">
+        <img class="blog-image" src="" alt="">
         <div class="blog-card-content">
           <h3 class="blog-title"></h3>
         </div>
@@ -38,14 +74,23 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('blog-banner');
+      const loading = document.getElementById('loading');
+      const error = document.getElementById('error');
+      const template = document.getElementById('blog-card-template');
+
       fetch('blog.json')
         .then(response => {
           if (!response.ok) throw new Error(`Network response was not ok: ${response.statusText}`);
           return response.json();
         })
         .then(blogPosts => {
-          const container = document.getElementById('blog-banner');
-          const template = document.getElementById('blog-card-template');
+          loading.style.display = 'none';
+          
+          if (blogPosts.length === 0) {
+            container.innerHTML = '<p>No blog posts available at the moment.</p>';
+            return;
+          }
 
           blogPosts.forEach(post => {
             const clone = template.content.cloneNode(true);
@@ -57,12 +102,16 @@
             img.src = post.image;
             img.alt = post.title;
 
-            clone.querySelector('.blog-title').innerHTML = post.title;
+            clone.querySelector('.blog-title').textContent = post.title;
 
             container.appendChild(clone);
           });
         })
-        .catch(error => console.error('Error loading blog.json:', error));
+        .catch(error => {
+          console.error('Error loading blog.json:', error);
+          loading.style.display = 'none';
+          document.getElementById('error').style.display = 'block';
+        });
     });
   </script>
 </body>

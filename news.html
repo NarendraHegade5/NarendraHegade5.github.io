@@ -5,30 +5,202 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Research Updates • Narendra N. Hegade</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Latest research updates, paper announcements, and conference participations by Narendra N. Hegade in quantum computing, quantum physics, BF-DCQO, DCQC, counterdiabatic protocols, and quantum optimization.">
+  <meta name="keywords" content="quantum computing research, quantum physics papers, conference presentations, BF-DCQO, DCQC, DCQO, digitized-counterdiabatic quantum computing, digitized-counterdiabatic quantum optimization, bias-field digitized counterdiabatic quantum optimization, digital-analog counterdiabatic quantum computing, DACQC, digital-analog quantum computing, digitized-adiabatic quantum computing, counterdiabatic protocols, counter-diabatic driving, counterdiabatic driving, sequential quantum computing, quantum optimization, Narendra Hegade research updates">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://narendrahegade5.github.io/news.html">
+  <meta property="og:title" content="Research Updates • Narendra N. Hegade">
+  <meta property="og:description" content="Latest research updates, paper announcements, and conference participations in quantum computing.">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:url" content="https://narendrahegade5.github.io/news.html">
+  <meta property="twitter:title" content="Research Updates • Narendra N. Hegade">
+  <meta property="twitter:description" content="Latest research updates, paper announcements, and conference participations in quantum computing.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MF594CH7BK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MF594CH7BK');
+  </script>
+  
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Carousel styling */
+    /* Category filters */
+    .category-filters {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .category-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--text-color);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    /* Enhanced news items */
+    .news-item {
+      position: relative;
+      overflow: visible;
+      margin: 2.5rem 0;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+      max-width: 100%;
+    }
+
+    .news-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+      border-color: rgba(9, 118, 130, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .news-item.hidden {
+      display: none;
+    }
+
+    /* Add class for cards with media to balance them */
+    .news-item.has-media {
+      margin-bottom: 2.5rem;
+    }
+
+    .news-item.has-media .update-description {
+      /* Remove height limit to show full text */
+      max-height: none;
+      overflow: visible;
+      position: relative;
+    }
+
+    .news-item.has-media .update-description::after {
+      display: none;
+    }
+
+    .category-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: capitalize;
+      /* Completely hide the category badges */
+      display: none !important;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .post-date {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+
+    .update-title {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      line-height: 1.4;
+    }
+
+    .update-description {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+      font-size: 1rem;
+    }
+
+    /* Enhanced carousel */
     .carousel {
       position: relative;
       width: 100%;
-      overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
-      margin-bottom: 1rem;
+      overflow: visible;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      margin: 1.5rem 0;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      min-height: auto;
+      max-height: none;
     }
 
     .carousel img,
     .carousel video {
       width: 100%;
-      display: none;
-      border-radius: 12px;
+      height: auto;
+      border-radius: 16px;
+      transition: opacity 0.3s ease;
+      object-fit: contain;
+      max-height: none;
     }
 
-    .carousel img.active,
-    .carousel video.active {
+    /* Media container active states */
+    .media-container {
+      display: none;
+      width: 100%;
+      height: auto;
+      min-height: auto;
+      max-height: none;
+      position: relative;
+      overflow: visible;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .media-container.active {
+      display: block !important;
+    }
+
+    .media-container img,
+    .media-container video {
+      width: 100%;
+      height: auto;
+      max-height: none;
+      object-fit: contain;
       display: block;
     }
 
+    /* Ensure videos maintain aspect ratio but don't exceed max height */
+    .media-container video {
+      object-fit: contain;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    /* Carousel buttons */
     .carousel-buttons {
       position: absolute;
       top: 50%;
@@ -37,39 +209,114 @@
       justify-content: space-between;
       transform: translateY(-50%);
       pointer-events: none;
+      padding: 0 1rem;
     }
 
     .carousel-buttons button {
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.7);
       border: none;
       color: #fff;
       cursor: pointer;
       pointer-events: auto;
-      padding: 0.5rem 0.7rem;
+      padding: 0.8rem 1rem;
       border-radius: 50%;
-      transition: background 0.3s ease;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+      backdrop-filter: blur(4px);
     }
 
     .carousel-buttons button:hover {
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.9);
+      transform: scale(1.1);
+    }
+    
+    .carousel-buttons button:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Carousel indicators */
+    .carousel-indicators {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      pointer-events: none;
+    }
+
+    .carousel-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      pointer-events: auto;
+      transition: background 0.3s ease;
+    }
+
+    .carousel-indicator.active {
+      background: var(--accent);
+    }
+
+    /* No results message */
+    .no-results {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-color);
+      font-style: italic;
+    }
+
+    /* Responsive improvements */
+    @media (max-width: 768px) {
+      .category-filters {
+        gap: 0.5rem;
+      }
+      
+      .category-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+      }
+      
+      .news-item {
+        padding: 1rem;
+      }
+      
+      .category-badge {
+        position: static;
+        display: inline-block;
+        margin-bottom: 0.5rem;
+      }
     }
   </style>
 </head>
 
 <body>
-  <nav class="topnav">
+  <nav class="topnav" role="navigation" aria-label="Main navigation">
     <div class="links">
       <a href="/">Home</a>
       <a href="/blog.html">Blog</a>
-      <a href="/news.html">News</a>
+      <a href="/news.html" aria-current="page">News</a>
     </div>
   </nav>
 
-  <main>
-    <h1 style="margin:2rem 0 1rem;color:var(--accent)">Research Updates</h1>
-    <p>This page includes the latest news, research paper announcements, conference participations, and updates about my work.</p>
+  <main id="main-content" role="main">
+    <h1 style="margin: 2rem 0 1rem; color: var(--accent); font-size: 1.8rem; font-weight: 600;">Research Updates</h1>
+    <p style="margin-bottom: 2rem; color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">This page includes the latest news, research paper announcements, conference participations, and updates about my work.</p>
 
-    <div id="updates-container"></div>
+    <!-- Category filters -->
+    <div class="category-filters" role="group" aria-label="Filter news by category">
+      <button class="category-btn active" data-category="all">All Updates</button>
+      <button class="category-btn" data-category="publication">Publications</button>
+      <button class="category-btn" data-category="conference">Conferences</button>
+      <button class="category-btn" data-category="research">Research</button>
+    </div>
+
+    <div id="updates-container">
+      <div id="loading" class="loading-message">Loading research updates...</div>
+      <div id="error" class="error-message" style="display: none;">Failed to load research updates. Please try again later.</div>
+    </div>
 
     <!-- Template for news items -->
     <template id="update-template">
@@ -77,79 +324,215 @@
         <time class="post-date"></time>
         <h2 class="update-title"></h2>
         <p class="update-description"></p>
-        <div class="carousel"></div>
+        <div class="carousel" role="region" aria-label="Media gallery">
+          <div class="carousel-indicators"></div>
+        </div>
       </section>
     </template>
   </main>
 
   <script>
+    let allNewsItems = [];
+    let currentCategory = 'all';
+
     document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('updates-container');
+      const loading = document.getElementById('loading');
+      const error = document.getElementById('error');
+      const template = document.getElementById('update-template');
+
+      // Category filter functionality
+      const categoryButtons = document.querySelectorAll('.category-btn');
+      categoryButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const category = btn.dataset.category;
+          filterNews(category);
+          
+          // Update active button
+          categoryButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        });
+      });
+
       fetch('news.json')
-        .then(response => response.json())
+        .then(response => {
+          if (!response.ok) throw new Error(`Network response was not ok: ${response.statusText}`);
+          return response.json();
+        })
         .then(newsItems => {
-          const container = document.getElementById('updates-container');
-          const template = document.getElementById('update-template');
+          loading.style.display = 'none';
+          allNewsItems = newsItems;
+          
+          if (newsItems.length === 0) {
+            container.innerHTML = '<p>No research updates available at the moment.</p>';
+            return;
+          }
 
-          // Sort items by date (newest first)
-          newsItems.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-          newsItems.forEach(item => {
-            const clone = template.content.cloneNode(true);
-
-            clone.querySelector('.post-date').textContent = new Date(item.date).toLocaleDateString(undefined, {
-              year: 'numeric',
-              month: 'short',
-              day: 'numeric'
-            });
-
-            clone.querySelector('.update-title').textContent = item.title;
-            clone.querySelector('.update-description').innerHTML = item.description;
-
-            const carousel = clone.querySelector('.carousel');
-
-            // Handle images
-            if (item.images) {
-              item.images.forEach((imgSrc, index) => {
-                const img = document.createElement('img');
-                img.src = imgSrc;
-                if (index === 0) img.classList.add('active');
-                carousel.appendChild(img);
-              });
-            }
-
-            // Handle videos
-            if (item.videos) {
-              item.videos.forEach((videoSrc, index) => {
-                const video = document.createElement('video');
-                video.controls = true;
-                if (index === 0) video.classList.add('active');
-                video.innerHTML = `<source src="${videoSrc}" type="video/mp4">Your browser does not support the video tag.`;
-                carousel.appendChild(video);
-              });
-            }
-
-            // Add carousel buttons if multiple media items
-            if ((item.images && item.images.length > 1) || (item.videos && item.videos.length > 1)) {
-              const buttonsHTML = `
-                <div class="carousel-buttons">
-                  <button onclick="changeSlide(this.parentNode.parentNode, -1)">❮</button>
-                  <button onclick="changeSlide(this.parentNode.parentNode, 1)">❯</button>
-                </div>`;
-              carousel.innerHTML += buttonsHTML;
-            }
-
-            container.appendChild(clone);
-          });
+          renderNews(newsItems);
+        })
+        .catch(error => {
+          console.error('Error loading news.json:', error);
+          loading.style.display = 'none';
+          document.getElementById('error').style.display = 'block';
         });
     });
 
-    // Carousel slide change function
+    function renderNews(newsItems) {
+      const container = document.getElementById('updates-container');
+      const template = document.getElementById('update-template');
+      
+      // Clear container
+      container.innerHTML = '';
+      
+      if (newsItems.length === 0) {
+        container.innerHTML = '<div class="no-results">No updates found for the selected category.</div>';
+        return;
+      }
+
+      // Sort items by date (newest first)
+      newsItems.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      newsItems.forEach(item => {
+        const clone = template.content.cloneNode(true);
+
+        // Set category badge - REMOVED: no longer creating category badges
+        // const categoryBadge = clone.querySelector('.category-badge');
+        // categoryBadge.textContent = item.category || 'update';
+
+        // Format date
+        const dateElement = clone.querySelector('.post-date');
+        const date = new Date(item.date);
+        const now = new Date();
+        const diffTime = Math.abs(now - date);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        
+        if (diffDays === 1) {
+          dateElement.textContent = 'Yesterday';
+        } else if (diffDays < 7) {
+          dateElement.textContent = `${diffDays} days ago`;
+        } else {
+          dateElement.textContent = date.toLocaleDateString(undefined, {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+          });
+        }
+
+        clone.querySelector('.update-title').textContent = item.title;
+        clone.querySelector('.update-description').innerHTML = item.description;
+
+        const carousel = clone.querySelector('.carousel');
+        const indicators = clone.querySelector('.carousel-indicators');
+
+        // Check if item has media and add class for styling
+        const hasMedia = (item.images && item.images.length > 0) || (item.videos && item.videos.length > 0);
+        if (hasMedia) {
+          clone.querySelector('.news-item').classList.add('has-media');
+        }
+
+        // Handle images
+        if (item.images) {
+          console.log(`Processing ${item.images.length} images for: ${item.title}`);
+          item.images.forEach((imgSrc, index) => {
+            const mediaContainer = document.createElement('div');
+            mediaContainer.className = `media-container ${index === 0 ? 'active' : ''}`;
+            
+            const img = document.createElement('img');
+            img.src = imgSrc;
+            img.alt = `${item.title} - Image ${index + 1}`;
+            img.onload = () => console.log(`Image loaded: ${imgSrc}`);
+            img.onerror = () => console.error(`Image failed to load: ${imgSrc}`);
+            
+            mediaContainer.appendChild(img);
+            carousel.appendChild(mediaContainer);
+            
+            // Add indicator
+            const indicator = document.createElement('div');
+            indicator.className = `carousel-indicator ${index === 0 ? 'active' : ''}`;
+            indicator.addEventListener('click', () => changeSlide(carousel, index));
+            indicators.appendChild(indicator);
+          });
+        }
+
+        // Handle videos
+        if (item.videos) {
+          console.log(`Processing ${item.videos.length} videos for: ${item.title}`);
+          item.videos.forEach((videoSrc, index) => {
+            const mediaContainer = document.createElement('div');
+            mediaContainer.className = `media-container ${index === 0 ? 'active' : ''}`;
+            
+            const video = document.createElement('video');
+            video.controls = true;
+            video.setAttribute('aria-label', `${item.title} - Video ${index + 1}`);
+            video.innerHTML = `<source src="${videoSrc}" type="video/mp4">Your browser does not support the video tag.`;
+            
+            mediaContainer.appendChild(video);
+            carousel.appendChild(mediaContainer);
+            
+            // Add indicator
+            const indicator = document.createElement('div');
+            indicator.className = `carousel-indicator ${index === 0 ? 'active' : ''}`;
+            indicator.addEventListener('click', () => changeSlide(carousel, index));
+            indicators.appendChild(indicator);
+          });
+        }
+
+        // Add carousel buttons if multiple media items
+        const totalMedia = (item.images ? item.images.length : 0) + (item.videos ? item.videos.length : 0);
+        if (totalMedia > 1) {
+          const buttonsHTML = `
+            <div class="carousel-buttons">
+              <button onclick="changeSlide(this.parentNode.parentNode, -1)" aria-label="Previous slide">❮</button>
+              <button onclick="changeSlide(this.parentNode.parentNode, 1)" aria-label="Next slide">❯</button>
+            </div>`;
+          carousel.innerHTML += buttonsHTML;
+        }
+
+        // Only show carousel if there's media content
+        if (totalMedia === 0) {
+          carousel.style.display = 'none';
+        } else {
+          carousel.style.display = 'block';
+        }
+
+        container.appendChild(clone);
+      });
+    }
+
+    function filterNews(category) {
+      currentCategory = category;
+      const filteredItems = category === 'all' 
+        ? allNewsItems 
+        : allNewsItems.filter(item => item.category === category);
+      renderNews(filteredItems);
+    }
+
+    // Enhanced carousel slide change function
     function changeSlide(carousel, direction) {
-      const media = carousel.querySelectorAll('img, video');
-      let current = Array.from(media).findIndex(el => el.classList.contains('active'));
-      media[current].classList.remove('active');
-      current = (current + direction + media.length) % media.length;
-      media[current].classList.add('active');
+      const mediaContainers = carousel.querySelectorAll('.media-container');
+      const indicators = carousel.querySelectorAll('.carousel-indicator');
+      
+      if (mediaContainers.length === 0) return;
+      
+      let current = Array.from(mediaContainers).findIndex(el => el.classList.contains('active'));
+      
+      // If direction is a number, go directly to that slide
+      if (typeof direction === 'number') {
+        current = direction;
+      } else {
+        // Otherwise, navigate by direction
+        current = (current + direction + mediaContainers.length) % mediaContainers.length;
+      }
+      
+      // Update media containers
+      mediaContainers.forEach(el => el.classList.remove('active'));
+      mediaContainers[current].classList.add('active');
+      
+      // Update indicators
+      indicators.forEach(indicator => indicator.classList.remove('active'));
+      if (indicators[current]) {
+        indicators[current].classList.add('active');
+      }
     }
   </script>
 </body>
