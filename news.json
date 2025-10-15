@@ -47,5 +47,19 @@
     "description": "The animation shows the 11-residue head-activator peptide QPPGGSKVILF folding on a tetrahedral lattice, using the 2000 measurement shots collected in the final BF-DCQO iteration on the IonQ Forte all-to-all trapped-ion processor: each frame presents one sampled conformation, the blue staircase curve plots the full set of conformations sorted from highest to lowest computed energy, and the orange dot highlights the structure currently in view, giving a clear snapshot of how the final quantum sample spans the energy landscape from less-favourable folds down to the global minimum.",
     "videos": ["videos/Protein Folding.mp4"],
     "category": "research"
+  },
+  {
+    "date": "2025-07-22",
+    "title": "Informs International Conference - Singapore",
+    "description": "Had the opprotunity to chair a session titled \"Quest of quantum advantage in optimization\"",
+    "videos": ["img/Inform_singapore1.jpeg", "img/Inform_singapore2.jpeg"],
+    "category": "conference"
+  },
+
+  {
+    "date": "2025-10-08",
+    "title": "Visit to IBM T J watson research center - New York",
+    "videos": ["img/ibm_yorktown1.jpeg", "img/ibm_yorktown2.jpeg"],
+    "category": "conference"
   }
 ]
