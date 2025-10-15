@@ -52,14 +52,15 @@
     "date": "2025-07-22",
     "title": "Informs International Conference - Singapore",
     "description": "Had the opprotunity to chair a session titled \"Quest of quantum advantage in optimization\"",
-    "videos": ["img/Inform_singapore1.jpeg", "img/Inform_singapore2.jpeg"],
+    "images": ["img/Inform_singapore1.jpeg", "img/Inform_singapore2.jpeg"],
     "category": "conference"
   },
 
   {
     "date": "2025-10-08",
     "title": "Visit to IBM T J watson research center - New York",
-    "videos": ["img/ibm_yorktown1.jpeg", "img/ibm_yorktown2.jpeg"],
+    "description":"",
+    "images": ["img/ibm_yorktown1.jpeg", "img/ibm_yorktown2.jpeg"],
     "category": "conference"
   }
 ]
