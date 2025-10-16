@@ -145,26 +145,22 @@
 
     .news-item-3d.active {
       opacity: 1;
-      transform: translate(-50%, -50%) translateZ(0) scale(1);
       z-index: 10;
     }
 
     .news-item-3d.prev {
-      opacity: 0.6;
-      transform: translate(-50%, -50%) translateZ(-200px) rotateY(60deg) scale(0.7);
-      z-index: 5;
+      opacity: 0.8;
+      z-index: 8;
     }
 
     .news-item-3d.next {
-      opacity: 0.6;
-      transform: translate(-50%, -50%) translateZ(-200px) rotateY(-60deg) scale(0.7);
-      z-index: 5;
+      opacity: 0.8;
+      z-index: 8;
     }
 
     .news-item-3d.hidden {
-      opacity: 0.1;
-      transform: translate(-50%, -50%) translateZ(-400px) rotateY(90deg) scale(0.4);
-      z-index: 1;
+      opacity: 0.3;
+      z-index: 5;
     }
 
     /* Enhanced 3D visual effects */
@@ -722,27 +718,27 @@
         carousel3d.appendChild(newsItem);
       });
 
-      // Update item positions and states
-      updateItemPositions();
+      // Position all items in 3D space
+      positionItemsIn3D();
     }
 
-    function updateItemPositions() {
+    function positionItemsIn3D() {
       const newsItems = document.querySelectorAll('.news-item-3d');
       const totalItems = filteredItems.length;
       
       newsItems.forEach((item, index) => {
         // Calculate position in the disk
         const angle = (360 / totalItems) * index;
-        const radius = 300; // Distance from center - smaller for better visibility
+        const radius = 400; // Distance from center
         
         // Position the item in 3D space
         const x = Math.cos(angle * Math.PI / 180) * radius;
         const z = Math.sin(angle * Math.PI / 180) * radius;
         
-        // Apply 3D transform
+        // Apply 3D transform - items face outward from center
         item.style.transform = `translate(-50%, -50%) translate3d(${x}px, 0, ${z}px) rotateY(${-angle}deg)`;
         
-        // Set visual state based on position relative to current
+        // Set initial visual state
         const relativeIndex = (index - currentIndex + totalItems) % totalItems;
         
         item.classList.remove('active', 'prev', 'next', 'hidden');
@@ -759,6 +755,7 @@
       });
     }
 
+
     function updateCarouselRotation() {
       const carousel3d = document.getElementById('carousel-3d');
       const totalItems = filteredItems.length;
@@ -772,7 +769,7 @@
       navRing.innerHTML = '';
 
       filteredItems.forEach((_, index) => {
-        const indicator = document.createElement('div');
+            const indicator = document.createElement('div');
         indicator.className = 'nav-indicator';
         if (index === currentIndex) {
           indicator.classList.add('active');
@@ -817,13 +814,34 @@
       // Update carousel rotation
       updateCarouselRotation();
       
-      // Update item positions and states
-      updateItemPositions();
+      // Update item states
+      updateItemStates();
       
       // Update navigation ring
       updateNavigationRing();
       
       resetAutoRotate();
+    }
+
+    function updateItemStates() {
+      const newsItems = document.querySelectorAll('.news-item-3d');
+      const totalItems = filteredItems.length;
+      
+      newsItems.forEach((item, index) => {
+        const relativeIndex = (index - currentIndex + totalItems) % totalItems;
+        
+        item.classList.remove('active', 'prev', 'next', 'hidden');
+        
+        if (relativeIndex === 0) {
+          item.classList.add('active');
+        } else if (relativeIndex === 1) {
+          item.classList.add('next');
+        } else if (relativeIndex === totalItems - 1) {
+          item.classList.add('prev');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
     }
 
     function startAutoRotate() {
