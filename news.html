@@ -68,11 +68,12 @@
       position: relative;
       width: 100%;
       height: 600px;
-      perspective: 1200px;
+      perspective: 2000px;
       margin: 3rem 0;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
 
     .carousel-3d {
@@ -81,16 +82,17 @@
       max-width: 800px;
       height: 100%;
       transform-style: preserve-3d;
-      transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     /* News Item Cards in 3D Space */
     .news-item-3d {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      max-width: 600px;
+      height: 400px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 24px;
@@ -98,52 +100,56 @@
       box-shadow: 
         0 20px 60px rgba(0, 0, 0, 0.6),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      padding: 3rem;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      opacity: 0.3;
       transform-style: preserve-3d;
-      transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      backface-visibility: hidden;
+      transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .news-item-3d.active {
       opacity: 1;
-      transform: translateZ(0) scale(1);
-    }
-
-    .news-item-3d.prev {
-      opacity: 0.6;
-      transform: translateZ(-200px) rotateY(60deg) scale(0.8);
-    }
-
-    .news-item-3d.next {
-      opacity: 0.6;
-      transform: translateZ(-200px) rotateY(-60deg) scale(0.8);
-    }
-
-    .news-item-3d.hidden {
-      opacity: 0.1;
-      transform: translateZ(-400px) rotateY(120deg) scale(0.5);
-    }
-
-    /* Enhanced 3D effects */
-    .news-item-3d {
-      backface-visibility: hidden;
-      transform-style: preserve-3d;
-    }
-
-    .news-item-3d.active {
+      transform: translate(-50%, -50%) translateZ(0) scale(1);
       z-index: 10;
     }
 
-    .news-item-3d.prev,
+    .news-item-3d.prev {
+      opacity: 0.7;
+      transform: translate(-50%, -50%) translateZ(-300px) rotateY(45deg) scale(0.8);
+      z-index: 5;
+    }
+
     .news-item-3d.next {
+      opacity: 0.7;
+      transform: translate(-50%, -50%) translateZ(-300px) rotateY(-45deg) scale(0.8);
       z-index: 5;
     }
 
     .news-item-3d.hidden {
+      opacity: 0.2;
+      transform: translate(-50%, -50%) translateZ(-600px) rotateY(90deg) scale(0.5);
       z-index: 1;
+    }
+
+    /* Enhanced 3D visual effects */
+    .news-item-3d {
+      will-change: transform, opacity;
+    }
+
+    .news-item-3d.active {
+      box-shadow: 
+        0 25px 80px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(9, 118, 130, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .news-item-3d.prev,
+    .news-item-3d.next {
+      box-shadow: 
+        0 15px 50px rgba(0, 0, 0, 0.6),
+        0 0 20px rgba(9, 118, 130, 0.2);
     }
 
     .news-item-3d::before {
@@ -601,7 +607,7 @@
       const carousel3d = document.getElementById('carousel-3d');
       carousel3d.innerHTML = '';
 
-      // Create 3D positioned news items
+      // Create 3D positioned news items in a circular formation
       filteredItems.forEach((item, index) => {
         const newsItem = document.createElement('div');
         newsItem.className = 'news-item-3d';
@@ -626,13 +632,6 @@
           });
         }
 
-        // Calculate 3D position
-        const totalItems = filteredItems.length;
-        const angle = (360 / totalItems) * index;
-        const radius = 400; // Distance from center
-        const x = Math.cos(angle * Math.PI / 180) * radius;
-        const z = Math.sin(angle * Math.PI / 180) * radius;
-
         newsItem.innerHTML = `
           <div class="post-date">${dateText}</div>
           <h2 class="update-title">${item.title}</h2>
@@ -647,25 +646,44 @@
           </div>
         `;
 
-        // Set initial 3D position
-        newsItem.style.transform = `translate3d(${x}px, 0, ${z}px) rotateY(${-angle}deg)`;
-        
-        // Set initial state
-        if (index === currentIndex) {
-          newsItem.classList.add('active');
-        } else if (index === (currentIndex + 1) % totalItems) {
-          newsItem.classList.add('next');
-        } else if (index === (currentIndex - 1 + totalItems) % totalItems) {
-          newsItem.classList.add('prev');
-        } else {
-          newsItem.classList.add('hidden');
-        }
-
         carousel3d.appendChild(newsItem);
       });
 
-      // Update carousel rotation
-      updateCarouselRotation();
+      // Update item positions and states
+      updateItemPositions();
+    }
+
+    function updateItemPositions() {
+      const newsItems = document.querySelectorAll('.news-item-3d');
+      const totalItems = filteredItems.length;
+      
+      newsItems.forEach((item, index) => {
+        // Calculate position in the disk
+        const angle = (360 / totalItems) * index;
+        const radius = 500; // Distance from center
+        
+        // Position the item in 3D space
+        const x = Math.cos(angle * Math.PI / 180) * radius;
+        const z = Math.sin(angle * Math.PI / 180) * radius;
+        
+        // Apply 3D transform
+        item.style.transform = `translate(-50%, -50%) translate3d(${x}px, 0, ${z}px) rotateY(${-angle}deg)`;
+        
+        // Set visual state based on position relative to current
+        const relativeIndex = (index - currentIndex + totalItems) % totalItems;
+        
+        item.classList.remove('active', 'prev', 'next', 'hidden');
+        
+        if (relativeIndex === 0) {
+          item.classList.add('active');
+        } else if (relativeIndex === 1) {
+          item.classList.add('next');
+        } else if (relativeIndex === totalItems - 1) {
+          item.classList.add('prev');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
     }
 
     function updateCarouselRotation() {
@@ -700,7 +718,7 @@
         indicator.addEventListener('click', () => {
           currentIndex = index;
           updateCarouselRotation();
-          updateItemStates();
+          updateItemPositions();
           updateNavigationRing();
           resetAutoRotate();
         });
@@ -726,32 +744,13 @@
       // Update carousel rotation
       updateCarouselRotation();
       
-      // Update item states
-      updateItemStates();
+      // Update item positions and states
+      updateItemPositions();
       
       // Update navigation ring
       updateNavigationRing();
       
       resetAutoRotate();
-    }
-
-    function updateItemStates() {
-      const newsItems = document.querySelectorAll('.news-item-3d');
-      const totalItems = filteredItems.length;
-      
-      newsItems.forEach((item, index) => {
-        item.classList.remove('active', 'prev', 'next', 'hidden');
-        
-        if (index === currentIndex) {
-          item.classList.add('active');
-        } else if (index === (currentIndex + 1) % totalItems) {
-          item.classList.add('next');
-        } else if (index === (currentIndex - 1 + totalItems) % totalItems) {
-          item.classList.add('prev');
-        } else {
-          item.classList.add('hidden');
-        }
-      });
     }
 
     function startAutoRotate() {
